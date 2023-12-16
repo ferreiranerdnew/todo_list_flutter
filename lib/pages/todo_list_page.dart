@@ -150,6 +150,19 @@ class _TodoListPageState extends State<TodoListPage> {
   void onDelete(Todo todo) {
     setState(() {
       todos.remove(todo);
-    }); 
+    });
+
+    //apresentar messagem no rodape da pagina ao deleta rum item ou tarefa
+    // e adcionar um buttom para desfazer a ação do delete
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Tarefa ${todo.title} foi removida com sucesso !',
+          style: TextStyle(color: Color(0xff060708)),
+        ),
+        backgroundColor: Colors.white,
+        action: SnackBarAction(label: 'Desfazer', onPressed: (){},),
+      ),
+    );
   }
 }

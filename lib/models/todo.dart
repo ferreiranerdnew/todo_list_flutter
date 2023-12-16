@@ -10,9 +10,4 @@ class Todo{
   String title;
   DateTime dateTime;
 
-
-
-
-
-
 }
