@@ -2,6 +2,7 @@
 
  */
 import 'package:flutter/material.dart';
+import 'package:todo_list/models/todo.dart';
 import 'package:todo_list/wigets/todo_list_item.dart';
 
 class TodoListPage extends StatefulWidget {
@@ -14,7 +15,9 @@ class TodoListPage extends StatefulWidget {
 class _TodoListPageState extends State<TodoListPage> {
   final TextEditingController todoController = TextEditingController();
 
-  List<String> todos = [];
+  // List<String> todos = [];
+  // buscando a informação dentro da classe Todo na pasta models
+  List<Todo> todos = [];
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,11 @@ class _TodoListPageState extends State<TodoListPage> {
                         String text = todoController.text;
                         //  comando para o flutter refazer a tela
                         setState(() {
-                          todos.add(text);
+                          Todo newTodo = Todo(
+                            title: text,
+                            dateTime: DateTime.now(),
+                          );
+                          todos.add(newTodo);
                         });
                         //  comando de limpar a label apso execução
                         todoController.clear();
@@ -87,10 +94,11 @@ class _TodoListPageState extends State<TodoListPage> {
                     shrinkWrap: true,
                     children: [
                       //  utiliza rum comando for dentrod a lista para apresenatr em tela
-                      for (String todo in todos)
+                      for (Todo todo in todos)
                         // criando um wiget personalizado proprio em uma todo_list_item.dart esta dentro da pasta de wigets
                         TodoListItem(
-                          title: todo,
+                          // passar o objeto todo por completo
+                          todo: todo,
                         ),
                     ],
                   ),

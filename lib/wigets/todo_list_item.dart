@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/models/todo.dart';
 
 class TodoListItem extends StatelessWidget {
   // definir um parametro obrigadorio required this.title  e final String? title;  ( o ? define que não pode ser null)
-  const TodoListItem({Key? key, required this.title}) : super(key: key);
+  const TodoListItem({Key? key, required this.todo}) : super(key: key);
 
-  final String title;
+  // final String title;
+  final Todo todo;
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +28,13 @@ class TodoListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '20/11/2023',
+            todo.dateTime.toString(),
             style: TextStyle(
               fontSize: 12,
             ),
           ),
           Text(
-            title,
+            todo.title,
             style: TextStyle(
               fontSize: 16,
               // deixando a fonte em negrito mais conhecido como dar peso ao texto
