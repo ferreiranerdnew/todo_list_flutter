@@ -1,5 +1,8 @@
-/* 
+/* RF TOP PAGINA todo_list_item.dat
 
+passar informações de item pais para filhos ou vice versa
+do pai para o filho : sempre passar atravez d eum parametro
+do filho para o pai : utilizar um callback
  */
 import 'package:flutter/material.dart';
 import 'package:todo_list/models/todo.dart';
@@ -84,7 +87,7 @@ class _TodoListPageState extends State<TodoListPage> {
                   ],
                 ),
                 SizedBox(height: 16),
-                // RF SizedBox; listviwer; scroll; buttom; variaveis; length = len; 
+                // RF SizedBox; listviwer; scroll; buttom; variaveis; length = len;
                 //  Criando a listviwer
                 //  o SizedBox tambem é um widget e serve para deter minar a largura de outros objetos,muitas veze sutilizamos como um widget vazio
                 // colocando a ListView dentro de um wiget flexible, par acresce e não quebrar a tela, possibilitando scroll
@@ -99,6 +102,8 @@ class _TodoListPageState extends State<TodoListPage> {
                         TodoListItem(
                           // passar o objeto todo por completo
                           todo: todo,
+                          // passando o callback de filho para pai
+                          onDelete: onDelete,
                         ),
                     ],
                   ),
@@ -138,5 +143,11 @@ class _TodoListPageState extends State<TodoListPage> {
         ),
       ),
     );
+  }
+
+  /*exemplo de um callback passando de filho para pai
+  */
+  void onDelete(Todo todo) {
+    todos.remove(todo);
   }
 }

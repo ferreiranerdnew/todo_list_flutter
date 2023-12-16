@@ -66,7 +66,9 @@ class TodoListItem extends StatelessWidget {
               foregroundColor: Colors.white,
               icon: Icons.delete,
               label: 'Delete',
-              onPressed: null,
+              onPressed: (){
+                // chamando um função que esta em todo_list_page.dart
+              },
             ),
             SlidableAction(
               onPressed: null,
@@ -79,5 +81,9 @@ class TodoListItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void doNothing() {
+    
   }
 }
