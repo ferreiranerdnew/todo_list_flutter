@@ -30,7 +30,10 @@ class TodoListItem extends StatelessWidget {
         children: [
           Text(            
             // para utilizar o Dateformat, é preciso ter a dependencia intl:, importada
-            DateFormat('dd/MM/yyyy').format(todo.dateTime),
+            // verificar a documentação, porém caso fique assim 'dd/MMM/yyyy' com 3 M modifica para o nome do mês em ingles
+            // existe formar par adeixar em portugues tambem
+            // outra forma e 'dd/MM/yyyy - EE ' mostr ao dia da semana
+            DateFormat('dd/MM/yyyy - HH:mm').format(todo.dateTime),
             // todo.dateTime.toString(),
             style: TextStyle(
               fontSize: 12,
