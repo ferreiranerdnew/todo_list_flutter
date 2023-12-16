@@ -89,7 +89,9 @@ class _TodoListPageState extends State<TodoListPage> {
                       //  utiliza rum comando for dentrod a lista para apresenatr em tela
                       for (String todo in todos)
                         // criando um wiget personalizado proprio em uma todo_list_item.dart esta dentro da pasta de wigets
-                        TodoListItem(),
+                        TodoListItem(
+                          title: todo,
+                        ),
                     ],
                   ),
                 ),

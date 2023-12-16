@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 
 class TodoListItem extends StatelessWidget {
-  const TodoListItem({Key? key}) : super(key: key);
+  // definir um parametro obrigadorio required this.title  e final String? title;  ( o ? define que não pode ser null)
+  const TodoListItem({Key? key, required this.title}) : super(key: key);
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    // RF PEDDING; Column; eixocruzado; fonte
-    // quando se utiliza um Container o memso por padrão tem  um parametro de PEDDING
+    // RF PEDDING; Column; eixocruzado; fonte, margin
+    // quando se utiliza um Container o mesmo por padrão tem  um parametro de PEDDING
+    // Resumo  "margin"  afastamento forda do container, "pedding" afastamento dentro do container
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         color: Colors.grey[200],
       ),
+      // o parametro margin e parecido com o padding, porém ao inverso d ao afastamento por fora do container
+      // assim conseguimos separar os itens dentro da lista deixando um aspecto com uma linha no meio de cada um      
+      margin: const EdgeInsets.symmetric(vertical: 2),
       padding: const EdgeInsets.all(16),
       //  colocando os textop dentro da coluna, a mesma por padrão mantem seus item centralizados
       child: Column(
@@ -25,7 +32,7 @@ class TodoListItem extends StatelessWidget {
             ),
           ),
           Text(
-            'Tarefa 123',
+            title,
             style: TextStyle(
               fontSize: 16,
               // deixando a fonte em negrito mais conhecido como dar peso ao texto
