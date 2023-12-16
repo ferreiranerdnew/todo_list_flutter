@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:todo_list/models/todo.dart';
 
 class TodoListItem extends StatelessWidget {
@@ -10,7 +11,7 @@ class TodoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // RF PEDDING; Column; eixocruzado; fonte, margin
+    // RF PEDDING; Column; eixocruzado; fonte, margin, DateFormat
     // quando se utiliza um Container o mesmo por padrão tem  um parametro de PEDDING
     // Resumo  "margin"  afastamento forda do container, "pedding" afastamento dentro do container
     return Container(
@@ -27,8 +28,10 @@ class TodoListItem extends StatelessWidget {
         //  expecificar o alinhamento do eixocruzado star = esqueda, end = direita, center = centro
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            todo.dateTime.toString(),
+          Text(            
+            // para utilizar o Dateformat, é preciso ter a dependencia intl:, importada
+            DateFormat('dd/MM/yyyy').format(todo.dateTime),
+            // todo.dateTime.toString(),
             style: TextStyle(
               fontSize: 12,
             ),
