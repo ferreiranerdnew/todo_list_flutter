@@ -195,15 +195,30 @@ class _TodoListPageState extends State<TodoListPage> {
             Text(' Vocês tem certeza que deseja apagar todas as tarefas? '),
         actions: [
           TextButton(
-            onPressed: (){},
+            onPressed: () {
+              // fechar o dialogo sem nenhuma mudança pelo botão cancelar
+              Navigator.of(context).pop();
+            },
+            style: TextButton.styleFrom(foregroundColor: Color(0xff00d7f3)),
             child: Text('Cancelar'),
           ),
           TextButton(
-            onPressed: (){},
+            onPressed: () {
+              Navigator.of(context).pop();
+              deleteAllTodos();
+            },
+            style: TextButton.styleFrom(
+                foregroundColor: Color.fromARGB(255, 243, 0, 0)),
             child: Text('Limpar Tudo'),
           ),
         ],
       ),
     );
+  }
+
+  void deleteAllTodos() {
+    setState(() {
+      todos.clear();
+    });
   }
 }
