@@ -12,7 +12,7 @@ class TodoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // RF PEDDING; Column; eixocruzado; fonte, margin, DateFormat
+    // RF PEDDING; Column; eixocruzado; fonte; margin; DateFormat; stretch = coluna sempre eocupar a maior largura possivel sempre
     // quando se utiliza um Container o mesmo por padrão tem  um parametro de PEDDING
     // Resumo  "margin"  afastamento forda do container, "pedding" afastamento dentro do container
     return Slidable(
@@ -28,7 +28,7 @@ class TodoListItem extends StatelessWidget {
         //  colocando os textop dentro da coluna, a mesma por padrão mantem seus item centralizados
         child: Column(
           //  expecificar o alinhamento do eixocruzado star = esqueda, end = direita, center = centro
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
               // para utilizar o Dateformat, é preciso ter a dependencia intl:, importada
@@ -57,7 +57,8 @@ class TodoListItem extends StatelessWidget {
         children: [
           SlidableAction(
             // An action can be bigger than the others.
-            flex: 3,
+            spacing:2,
+            // flex: 1,
             onPressed: null,
             backgroundColor: Color.fromARGB(255, 250, 3, 3),
             foregroundColor: Colors.white,

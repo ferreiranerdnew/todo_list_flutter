@@ -1,4 +1,4 @@
-/*
+/* 
 
  */
 import 'package:flutter/material.dart';
@@ -84,7 +84,7 @@ class _TodoListPageState extends State<TodoListPage> {
                   ],
                 ),
                 SizedBox(height: 16),
-                // RF SizedBox; listviwer; scroll; buttom; variaveis; length = len
+                // RF SizedBox; listviwer; scroll; buttom; variaveis; length = len; 
                 //  Criando a listviwer
                 //  o SizedBox tambem é um widget e serve para deter minar a largura de outros objetos,muitas veze sutilizamos como um widget vazio
                 // colocando a ListView dentro de um wiget flexible, par acresce e não quebrar a tela, possibilitando scroll
