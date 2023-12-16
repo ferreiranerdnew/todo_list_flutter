@@ -5,16 +5,17 @@ class TodoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO quando se utiliza um Container o memso por padrão tem  um parametro de PEDDING
+    // RF PEDDING; Column; eixocruzado; fonte
+    // quando se utiliza um Container o memso por padrão tem  um parametro de PEDDING
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         color: Colors.grey[200],
       ),
       padding: const EdgeInsets.all(16),
-      // TODO colocando os textop dentro da coluna, a mesma por padrão mantem seus item centralizados
+      //  colocando os textop dentro da coluna, a mesma por padrão mantem seus item centralizados
       child: Column(
-        // TODO expecificar o alinhamento do eixocruzado star = esqueda, end = direita, center = centro
+        //  expecificar o alinhamento do eixocruzado star = esqueda, end = direita, center = centro
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -27,7 +28,7 @@ class TodoListItem extends StatelessWidget {
             'Tarefa 123',
             style: TextStyle(
               fontSize: 16,
-              // TODO deixando a fonte em negrito mais conhecido como dar peso ao texto
+              // deixando a fonte em negrito mais conhecido como dar peso ao texto
               fontWeight: FontWeight.w600,
             ),
           ),
