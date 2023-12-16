@@ -21,6 +21,9 @@ class _TodoListPageState extends State<TodoListPage> {
   // List<String> todos = [];
   // buscando a informação dentro da classe Todo na pasta models
   List<Todo> todos = [];
+  // BUG  TENTAR ATUALIZAR flutter_slidable: E USAR A FUNÇÃO ABAIXO COM onPressed:  SEGUINDO A DOCUMENTAÇÃO REFAZER O actionPane: PARA endactionPane:   do todo_list_item.dart
+  Todo? deletedTodo;
+  int? deletedTodoPos;
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +123,7 @@ class _TodoListPageState extends State<TodoListPage> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: showDleteTodosConfirmationDialog,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 102, 255, 255),
                         padding: EdgeInsets.all(16),
@@ -148,12 +151,17 @@ class _TodoListPageState extends State<TodoListPage> {
   /*exemplo de um callback passando de filho para pai
   */
   void onDelete(Todo todo) {
+    deletedTodo = todo;
+    deletedTodoPos = todos.indexOf(todo);
+
     setState(() {
       todos.remove(todo);
     });
 
     //apresentar messagem no rodape da pagina ao deleta rum item ou tarefa
     // e adcionar um buttom para desfazer a ação do delete
+    ScaffoldMessenger.of(context)
+        .clearSnackBars(); // comando para limpar a snck bar rapidamente
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -161,7 +169,40 @@ class _TodoListPageState extends State<TodoListPage> {
           style: TextStyle(color: Color(0xff060708)),
         ),
         backgroundColor: Colors.white,
-        action: SnackBarAction(label: 'Desfazer', onPressed: (){},),
+        action: SnackBarAction(
+          label: 'Desfazer',
+          // mudar a cor do buttom
+          textColor: const Color(0xff00d7f3),
+          onPressed: () {
+            // BUG o ponto de ! e para garantir ao sistema que a variavel não e null da Mesma forma que ? você est ainformando que criou a variavel null
+            setState(() {
+              todos.insert(deletedTodoPos!, deletedTodo!);
+            });
+          },
+        ),
+        // identificar a duração do snack bar na tela
+        duration: const Duration(seconds: 5),
+      ),
+    );
+  }
+
+  void showDleteTodosConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Limpar Tudo'),
+        content:
+            Text(' Vocês tem certeza que deseja apagar todas as tarefas? '),
+        actions: [
+          TextButton(
+            onPressed: (){},
+            child: Text('Cancelar'),
+          ),
+          TextButton(
+            onPressed: (){},
+            child: Text('Limpar Tudo'),
+          ),
+        ],
       ),
     );
   }
