@@ -5,10 +5,14 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 class TodoListItem extends StatelessWidget {
   // definir um parametro obrigadorio required this.title  e final String? title;  ( o ? define que não pode ser null)
-  const TodoListItem({Key? key, required this.todo}) : super(key: key);
+  const TodoListItem({Key? key, required this.todo, required this.onDelete})
+      : super(key: key);
 
   // final String title;
   final Todo todo;
+  // RF recebendo o callback de filho para pai, sempre procurar como callback ou de filho para pai esta referenciado desta forma
+  final Function(Todo) onDelete;
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +57,8 @@ class TodoListItem extends StatelessWidget {
               ),
             ],
           ),
-        ), 
-        // The end action pane is the one at the right or the bottom side.        
+        ),
+        // The end action pane is the one at the right or the bottom side.
         endActionPane: const ActionPane(
           motion: ScrollMotion(),
           children: [
@@ -66,8 +70,9 @@ class TodoListItem extends StatelessWidget {
               foregroundColor: Colors.white,
               icon: Icons.delete,
               label: 'Delete',
-              onPressed: (){
-                // chamando um função que esta em todo_list_page.dart
+              onPressed: () {
+                // chamando um função que esta em todo_list_page.dart 
+                onDelete(todo);
               },
             ),
             SlidableAction(
@@ -81,9 +86,5 @@ class TodoListItem extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void doNothing() {
-    
   }
 }

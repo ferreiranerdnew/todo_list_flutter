@@ -148,6 +148,8 @@ class _TodoListPageState extends State<TodoListPage> {
   /*exemplo de um callback passando de filho para pai
   */
   void onDelete(Todo todo) {
-    todos.remove(todo);
+    setState(() {
+      todos.remove(todo);
+    }); 
   }
 }
