@@ -18,8 +18,9 @@ class TodoListPage extends StatefulWidget {
 
 class _TodoListPageState extends State<TodoListPage> {
   final TextEditingController todoController = TextEditingController();
+
   //recebendo informações persistidas do shared_preferences
-  final TodoRepository todoRepository = TodoRepository(); 
+  final TodoRepository todoRepository_1 = TodoRepository();
 
   // List<String> todos = [];
   // buscando a informação dentro da classe Todo na pasta models
@@ -57,7 +58,7 @@ class _TodoListPageState extends State<TodoListPage> {
                     SizedBox(width: 8),
                     ElevatedButton(
                       onPressed: () {
-                        // RF DICAS ELEMENTO onPressed
+                        // RF onPressed; shared_preferences
                         //  pegando a informação digitada na labal
                         String text = todoController.text;
                         //  comando para o flutter refazer a tela
@@ -70,6 +71,9 @@ class _TodoListPageState extends State<TodoListPage> {
                         });
                         //  comando de limpar a label apso execução
                         todoController.clear();
+                        //salvando a lista de todos no shared_preferences
+                        todoRepository_1.saveTodoList(todos);
+
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 102, 255, 255),
