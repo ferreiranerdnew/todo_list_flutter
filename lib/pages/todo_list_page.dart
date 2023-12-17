@@ -62,12 +62,15 @@ class _TodoListPageState extends State<TodoListPage> {
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Adicione uma tarefa',
+                            labelStyle: TextStyle(
+                              color: Color(0xff00d7f3),
+                            ),
                             hintText: 'Ex. Estudar Flutter',
                             errorText: errorText_1,
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(
-                                    0xff00d7f3), //deixar a linha da borda mais grossa
+                                color: Color(0xff00d7f3),
+                                //deixar a linha da borda mais grossa
                                 width: 2,
                               ),
                             )),
