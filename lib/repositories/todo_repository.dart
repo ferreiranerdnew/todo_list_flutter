@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_list/models/todo.dart';
 
 class TodoRepository {
   TodoRepository() {
@@ -10,10 +13,14 @@ class TodoRepository {
    */
   late SharedPreferences sharePreferences;
 
-  void exemplo(){
-    sharePreferences.setString('nome', 'Renato');
-    // lendo string depois
-    sharePreferences.getString('nome');
 
-  }
+ //Salvando informações, precisa criar um function esta informações são carregadas do todo.dart apos inicialização
+ //fica um pouco confuso porém estas informaçõe sdeve ser carregadas no todo_list_page.dart
+ void saveTodoList(List<Todo> todos){
+  //converter a lista todo em um Json 
+  // desta forma a lista e transforma em um json
+  final jsonString =  json.encode(todos);
+  print(jsonString);
+
+ }
 }

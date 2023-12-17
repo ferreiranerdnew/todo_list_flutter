@@ -6,6 +6,7 @@ do filho para o pai : utilizar um callback
  */
 import 'package:flutter/material.dart';
 import 'package:todo_list/models/todo.dart';
+import 'package:todo_list/repositories/todo_repository.dart';
 import 'package:todo_list/wigets/todo_list_item.dart';
 
 class TodoListPage extends StatefulWidget {
@@ -17,6 +18,8 @@ class TodoListPage extends StatefulWidget {
 
 class _TodoListPageState extends State<TodoListPage> {
   final TextEditingController todoController = TextEditingController();
+  //recebendo informações persistidas do shared_preferences
+  final TodoRepository todoRepository = TodoRepository(); 
 
   // List<String> todos = [];
   // buscando a informação dentro da classe Todo na pasta models
