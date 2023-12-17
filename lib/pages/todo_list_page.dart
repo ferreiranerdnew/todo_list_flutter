@@ -28,11 +28,12 @@ class _TodoListPageState extends State<TodoListPage> {
   // BUG  TENTAR ATUALIZAR flutter_slidable: E USAR A FUNÇÃO ABAIXO COM onPressed:  SEGUINDO A DOCUMENTAÇÃO REFAZER O actionPane: PARA endactionPane:   do todo_list_item.dart
   Todo? deletedTodo;
   int? deletedTodoPos;
+  String? errorText_1;
 
   @override
   void initState() {
     super.initState();
-    todoRepository_1.getTodoList_1().then((value){
+    todoRepository_1.getTodoList_1().then((value) {
       setState(() {
         todos = value;
       });
@@ -59,10 +60,17 @@ class _TodoListPageState extends State<TodoListPage> {
                       child: TextField(
                         controller: todoController,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Adicione uma tarefa',
-                          hintText: 'Ex. Estudar Flutter',
-                        ),
+                            border: OutlineInputBorder(),
+                            labelText: 'Adicione uma tarefa',
+                            hintText: 'Ex. Estudar Flutter',
+                            errorText: errorText_1,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(
+                                    0xff00d7f3), //deixar a linha da borda mais grossa
+                                width: 2,
+                              ),
+                            )),
                       ),
                     ),
                     SizedBox(width: 8),
@@ -71,19 +79,28 @@ class _TodoListPageState extends State<TodoListPage> {
                         // RF onPressed; shared_preferences
                         //  pegando a informação digitada na labal
                         String text = todoController.text;
+                        //verificar se o labal esta empty caso seja true retornar um erro
+                        if (text.isEmpty) {
+                          setState(() {
+                            errorText_1 = 'O título não pode ser vazio!';
+                          });
+                          return;
+                        }
                         //  comando para o flutter refazer a tela
+
                         setState(() {
                           Todo newTodo = Todo(
                             title: text,
                             dateTime: DateTime.now(),
                           );
                           todos.add(newTodo);
+                          //caso seja ok zerar a variaveld e erro
+                          errorText_1 = null;
                         });
                         //  comando de limpar a label apso execução
                         todoController.clear();
                         //salvando a lista de todos no shared_preferences
                         todoRepository_1.saveTodoList(todos);
-
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 102, 255, 255),
@@ -174,6 +191,8 @@ class _TodoListPageState extends State<TodoListPage> {
     setState(() {
       todos.remove(todo);
     });
+    //salvando a lista de todos no shared_preferences
+    todoRepository_1.saveTodoList(todos);
 
     //apresentar messagem no rodape da pagina ao deleta rum item ou tarefa
     // e adcionar um buttom para desfazer a ação do delete
@@ -195,6 +214,8 @@ class _TodoListPageState extends State<TodoListPage> {
             setState(() {
               todos.insert(deletedTodoPos!, deletedTodo!);
             });
+            //salvando a lista de todos no shared_preferences
+            todoRepository_1.saveTodoList(todos);
           },
         ),
         // identificar a duração do snack bar na tela
@@ -237,5 +258,7 @@ class _TodoListPageState extends State<TodoListPage> {
     setState(() {
       todos.clear();
     });
+    //salvando a lista de todos no shared_preferences
+    todoRepository_1.saveTodoList(todos);
   }
 }
