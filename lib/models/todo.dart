@@ -7,6 +7,10 @@ acesso a todo_repository.dart  transformando a sinformações em um mapa
 class Todo {
   Todo({required this.title, required this.dateTime});
 
+  Todo.fromJson_1(Map<String, dynamic> json)
+      : title = json['title'],
+        dateTime = DateTime.parse(json['datetime']);
+
   String title;
   DateTime dateTime;
 

@@ -30,6 +30,16 @@ class _TodoListPageState extends State<TodoListPage> {
   int? deletedTodoPos;
 
   @override
+  void initState() {
+    super.initState();
+    todoRepository_1.getTodoList_1().then((value){
+      setState(() {
+        todos = value;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     // RF 01 CORRIGIR OS ELEMENTOS QUE PASSA ACIMA DA SINFORMAÇÕES DO CELULAR COLOCAR O Scaffold DENTRO DE UM WIGET SafeArea, vai manter dentro da area segura do dispositivo
     return SafeArea(

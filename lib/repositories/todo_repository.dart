@@ -12,11 +12,12 @@ class TodoRepository {
    */
   late SharedPreferences sharePreferences;
 
-  Future<void> getTodoList() async{
+  Future<List<Todo>> getTodoList_1() async{
     sharePreferences = await SharedPreferences.getInstance();
     // caso não encontrar um valor anterior e seja  aprimeir avez do usuario iniciar uam lista vazia ?? '[]'
     final String jsonString = sharePreferences.getString(todoListKey)?? '[]';
     final List jsonDecode = json.decode(jsonString) as List;
+    return jsonDecode.map((e) => Todo.fromJson_1(e)).toList();
 
   }
 
