@@ -61,39 +61,28 @@ class TodoListItem extends StatelessWidget {
             ],
           ),
         ),
-
-        endActionPane: ActionPane(
-            // A motion is a widget used to control how the pane animates.
-            motion: const ScrollMotion(),
-
-            // A pane can dismiss the Slidable.
-            dismissible: DismissiblePane(onDismissed: () {}),
-
-            // All actions are defined in the children parameter.
-            children: const [
-              // A SlidableAction can have an icon and/or a label.
-              SlidableAction(
-                onPressed: null,
-                backgroundColor: Color(0xFFFE4A49),
-                foregroundColor: Colors.white,
-                icon: Icons.delete,
-                label: 'Delete',
-              ),
-              SlidableAction(
-                onPressed: null,
-                backgroundColor: Color(0xFF21B7CA),
-                foregroundColor: Colors.white,
-                icon: Icons.share,
-                label: 'Share',
-              ),
-            ],
+        actionExtentRatio: 0.20,
+        actionPane: const SlidableStrechActionPane(),
+        secondaryActions: [
+          IconSlideAction(
+            caption: 'Delete',
+            color: Colors.red,
+            icon: Icons.delete,
+            onTap: () {
+              onDelete(todo);
+            },
           ),
-
-
-
-
-
+          IconSlideAction(
+            caption: 'Save',
+            color: Colors.blue,
+            icon: Icons.save,
+            onTap: () {              
+            },
+          ),
+        ],
       ),
     );
   }
+ 
 }
+ void doNothing(BuildContext context) {}
